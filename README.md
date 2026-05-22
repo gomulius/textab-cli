@@ -5,9 +5,15 @@ Sync [TexTab](https://textab.app) cloud notes to local AI coding assistant confi
 ## Installation
 
 ```bash
-pip install textab-cli
-# or, recommended:
-pipx install textab-cli
+pip install git+https://github.com/gomulius/textab-cli.git
+```
+
+Or clone and install locally:
+
+```bash
+git clone https://github.com/gomulius/textab-cli.git
+cd textab-cli
+pip install .
 ```
 
 ## Quick Start

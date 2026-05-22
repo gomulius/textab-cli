@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "textab-cli"
+version = "0.1.0"
+description = "Sync TexTab cloud notes to local AI coding assistant config files"
+authors = [{name = "TexTab", email = "dev@textab.app"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "typer[rich]>=0.12,<2.0",
+    "httpx>=0.27,<2.0",
+    "keyring>=24,<26",
+    "python-dateutil>=2.9,<3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-httpx>=0.30",
+    "black",
+    "ruff",
+]
+
+[project.scripts]
+textab = "textab.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/textab"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"

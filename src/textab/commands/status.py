@@ -16,7 +16,22 @@ def status_command(
     ),
     json_output: bool = typer.Option(False, "--json", help="Output as JSON."),
 ) -> None:
-    """Show sync status of all tracked files."""
+    """Show sync status of all tracked files.
+
+    \b
+    Examples:
+      textab status                  # offline check (uses local mtimes)
+      textab status --fetch          # also checks server for remote changes
+      textab status --json           # machine-readable output
+
+    \b
+    Status icons:
+      ✓  Up to date
+      M  Modified locally since last sync
+      U  Outdated — remote has newer changes (requires --fetch)
+      !  Conflict — both local and remote changed (requires --fetch)
+      ?  Missing locally
+    """
     try:
         cfg = load_project_config()
     except TextabError as e:

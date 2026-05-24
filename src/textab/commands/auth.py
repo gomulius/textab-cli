@@ -20,7 +20,19 @@ def login(
         help="Base URL of your TexTab instance.",
     ),
 ) -> None:
-    """Store API credentials and verify they work."""
+    """Store API credentials and verify they work.
+
+    \b
+    Examples:
+      textab auth login                        # interactive prompts
+      textab auth login --base-url https://textab.app/sandbox
+
+    \b
+    Get your Personal Access Token from: TexTab → Profile → API Keys.
+    Credentials are stored in the OS keychain (macOS Keychain, Windows
+    Credential Manager, Linux Secret Service), falling back to
+    ~/.textab-credentials if the keychain is unavailable.
+    """
     try:
         with TexTabClient(token, base_url) as client:
             user = client.get_current_user()
@@ -38,7 +50,7 @@ def login(
 
 @app.command("logout")
 def logout() -> None:
-    """Remove stored credentials."""
+    """Remove stored credentials from keychain and ~/.textab-credentials."""
     if delete_credentials():
         typer.echo("Credentials removed.")
     else:
@@ -47,7 +59,7 @@ def logout() -> None:
 
 @app.command("whoami")
 def whoami() -> None:
-    """Show the currently authenticated user."""
+    """Show the currently authenticated user and base URL."""
     try:
         token, base_url = load_credentials()
         with TexTabClient(token, base_url) as client:

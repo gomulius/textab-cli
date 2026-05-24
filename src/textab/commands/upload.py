@@ -62,7 +62,37 @@ def upload_command(
         help="Re-upload files that are already tracked in .textab.",
     ),
 ) -> None:
-    """Upload local files to TexTab as notes and tag them."""
+    """Upload local files to TexTab as notes and tag them.
+
+    \b
+    Upload a single file:
+      textab upload CLAUDE.md --tag my-project
+      textab upload .cursorrules --tag my-project
+      textab upload .github/copilot-instructions.md --tag my-project
+
+    \b
+    Auto-discover and upload all AI assistant config files:
+      textab upload --all --tag my-project
+
+    \b
+    Preview what would be uploaded without making changes:
+      textab upload --all --tag my-project --dry-run
+
+    \b
+    Re-upload files that are already tracked:
+      textab upload --all --tag my-project --force
+
+    \b
+    Files discovered by --all:
+      CLAUDE.md, CLAUDE.local.md  (Claude Code)
+      AGENTS.md                   (OpenAI Codex)
+      GEMINI.md                   (Gemini CLI)
+      .cursorrules                (Cursor)
+      .windsurfrules              (Windsurf)
+      .clinerules                 (Cline)
+      .github/copilot-instructions.md  (GitHub Copilot)
+      .aider.conf.yml             (Aider)
+    """
     if not filename and not all_files:
         typer.echo(
             "Provide a filename or use --all to discover AI assistant files.\n"

@@ -44,7 +44,15 @@ def sync_command(
         help="Overwrite local files even when locally modified.",
     ),
 ) -> None:
-    """Pull all tagged notes from TexTab and write them to local files."""
+    """Pull all tagged notes from TexTab and write them to local files.
+
+    \b
+    Examples:
+      textab sync
+      textab sync --dry-run          # preview changes without writing
+      textab sync --no-compile       # skip AI Variables compilation
+      textab sync --force            # overwrite locally modified files
+    """
     try:
         cfg = load_project_config()
     except TextabError as e:

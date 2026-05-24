@@ -24,7 +24,16 @@ def push_command(
         None, "--title", help="Override the note title on the server."
     ),
 ) -> None:
-    """Push a local file back to its TexTab note (server auto-versions the previous state)."""
+    """Push a local file back to its TexTab note (server auto-versions the previous state).
+
+    \b
+    Examples:
+      textab push CLAUDE.md
+      textab push .cursorrules
+      textab push docs/architecture.md
+      textab push CLAUDE.md --force      # overwrite even if server has newer changes
+      textab push CLAUDE.md --title "My Project Rules"  # rename on the server
+    """
     try:
         cfg = load_project_config()
     except TextabError as e:

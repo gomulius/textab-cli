@@ -18,7 +18,18 @@ def init_command(
         None, "--base-url", help="Override base URL (defaults to value stored in credentials)."
     ),
 ) -> None:
-    """Link the current directory to a TexTab tag."""
+    """Link the current directory to a TexTab tag.
+
+    \b
+    Examples:
+      textab init                              # prompts for tag name
+      textab init --tag my-project             # non-interactive
+      textab init --tag my-project --base-url https://textab.app/sandbox
+
+    \b
+    The tag must already exist in your TexTab account.
+    Creates a .textab file in the current directory — safe to commit to git.
+    """
     try:
         token, cred_base_url = load_credentials()
     except CredentialsNotFound as e:

@@ -4,16 +4,25 @@ Sync [TexTab](https://textab.app) cloud notes to local AI coding assistant confi
 
 ## Installation
 
+**macOS / Linux (recommended):**
+
 ```bash
-pip install git+https://github.com/gomulius/textab-cli.git
+pipx install git+https://github.com/gomulius/textab-cli.git
 ```
 
-Or clone and install locally:
+`pipx` installs CLI tools in isolated environments and puts `textab` on your PATH automatically. Install `pipx` first if needed:
+
+```bash
+brew install pipx   # macOS
+pipx ensurepath
+```
+
+**Or clone and install locally:**
 
 ```bash
 git clone https://github.com/gomulius/textab-cli.git
 cd textab-cli
-pip install .
+pipx install .
 ```
 
 ## Quick Start
